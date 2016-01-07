@@ -4,7 +4,7 @@ This is the scripts to sample points on the Pareto-optimal front (PF) of a given
 ## Basic Idea
 Since the analytical forms of ZDT and DTLZ test problems are easy to understand, we at first use the classic Das and Dennis's method to sample given number of reference points on a canonical simplex. Afterwards, we back-compute the intersection point between a reference line and PF.
 
-## TODO
+## To Do List
 The current version can only be useful for ZDT and DTLZ test problems. In future, we would like to explore the following issues:
 
 1. The scripts for DTLZ5 to DTLZ7 problems can only serve the sampling purpose in 3-objective case. We will extend the idea for many-objective cases, i.e., \# of objectives > 3.
