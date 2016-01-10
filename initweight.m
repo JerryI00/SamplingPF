@@ -1,4 +1,11 @@
-% This function is written by Dr. Aimin Zhou for generating any number of weight vectors
+% ------------------------------------------------------------------------%
+% This function is written by Dr. Aimin Zhou for generating any number of
+% weight vectors.
+%
+% Author:  Dr. Ke Li @ University of Birmingham
+% Contact: keli.genius@gmail.com (http://www.cs.bham.ac.uk/~likw)
+% Last modified: 01/07/2016
+% ------------------------------------------------------------------------%
 
 function W = initweight(objDim, N)
     
