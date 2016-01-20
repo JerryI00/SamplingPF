@@ -4,10 +4,10 @@
 %
 % Author:  Dr. Ke Li @ University of Birmingham
 % Contact: keli.genius@gmail.com (http://www.cs.bham.ac.uk/~likw)
-% Last modified: 01/07/2016
+% Last modified: 01/20/2016
 % ------------------------------------------------------------------------%
 
-function P = samplingIGD(objDim, no_layers, no_gaps, shrink_factors, sample_size, id)
+function P = samplingPF(objDim, no_layers, no_gaps, shrink_factors, sample_size, id)
 
     %% generate the reference vectors
     if objDim < 6
@@ -46,9 +46,9 @@ function P = samplingIGD(objDim, no_layers, no_gaps, shrink_factors, sample_size
         P = W ./ (2 * deMatrix);
     %% DTLZ2 - DTLZ4
     elseif id == 5
-        tempW = W .* W;
+        tempW       = W .* W;
         denominator = sum(tempW, 2);
-        deMatrix = denominator(:, ones(objDim, 1));
+        deMatrix    = denominator(:, ones(objDim, 1));
 
         P = W ./ sqrt(deMatrix);
     %% DTLZ5 - DTLZ6
@@ -58,28 +58,29 @@ function P = samplingIGD(objDim, no_layers, no_gaps, shrink_factors, sample_size
         f2    = cos(theta * pi / 2) * sin(pi / 4);
         f3    = sin(theta * pi / 2);
         
-        P = zeros(sample_size, objDim);
+        P       = zeros(sample_size, objDim);
         P(:, 1) = f1';
         P(:, 2) = f2';
         P(:, 3) = f3';
     %% DTLZ7
     elseif id == 7
-        step = sqrt(sample_size);
-        f1 = 0 : 1 / (step - 1) : 1;
-        f2 = f1;
+        step = round(sqrt(sample_size));
+        f1   = 0 : 1 / (step - 1) : 1;
+        f2   = f1;
 
-        P = zeros(step * step, objDim);
+        P           = zeros(step * step, objDim);
+        sample_size = size(P, 1);
         for i = 1 : step
             for j = 1 : step
-                idx = (i - 1) * step + j;
+                idx       = (i - 1) * step + j;
                 P(idx, 1) = f1(i);
                 P(idx, 2) = f2(j);
             end
         end
-        t1 = P(:, 1) .* (ones(sample_size, 1) + sin(3 * pi * P(:, 1)));
-        t2 = P(:, 2) .* (ones(sample_size, 1) + sin(3 * pi * P(:, 2)));
+        t1      = P(:, 1) .* (ones(sample_size, 1) + sin(3 * pi * P(:, 1)));
+        t2      = P(:, 2) .* (ones(sample_size, 1) + sin(3 * pi * P(:, 2)));
         P(:, 3) = 3 - t1 - t2;
-        P = find_nondominated(P, objDim);
+        P       = find_nondominated(P, objDim);
     else
         error('Bad id!');
     end
@@ -88,7 +89,7 @@ end
 
 %% Find out the dominance relationship between 'a' and 'b'
 function x = dominated_relationship(a, b, m)
-% Input Parameters :  a->ind1; b->ind2; m-># of objectives£¬
+% Input Parameters :  a->ind1; b->ind2; m-># of objectivesï¼Œ
 % Output Parameters: 1->a dominates b; 2->b dominates a; 3->a equals b;
 % 4->a and b are non-dominated to each other
 
