@@ -4,7 +4,7 @@
 %
 % Author:  Dr. Ke Li @ University of Birmingham
 % Contact: keli.genius@gmail.com (http://www.cs.bham.ac.uk/~likw)
-% Last modified: 01/20/2016
+% Last modified: 01/21/2016
 % ------------------------------------------------------------------------%
 
 function P = samplingPF(objDim, no_layers, no_gaps, shrink_factors, sample_size, id)
@@ -77,9 +77,9 @@ function P = samplingPF(objDim, no_layers, no_gaps, shrink_factors, sample_size,
                 P(idx, 2) = f2(j);
             end
         end
-        t1      = P(:, 1) .* (ones(sample_size, 1) + sin(3 * pi * P(:, 1)));
-        t2      = P(:, 2) .* (ones(sample_size, 1) + sin(3 * pi * P(:, 2)));
-        P(:, 3) = 3 - t1 - t2;
+        t1      = P(:, 1) .* (ones(sample_size, 1) + sin(3 * pi * P(:, 1))) / 2;
+        t2      = P(:, 2) .* (ones(sample_size, 1) + sin(3 * pi * P(:, 2))) / 2;
+        P(:, 3) = 2 * (3 - t1 - t2);
         P       = find_nondominated(P, objDim);
     else
         error('Bad id!');
