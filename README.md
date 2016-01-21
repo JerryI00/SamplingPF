@@ -11,4 +11,4 @@ The current version can only be useful for ZDT and DTLZ problems. In future, we 
 2. The analytical forms of WFG test problems are not quite well understanable -.- However, we still try to figure out a sampling method for WFG problem, which is very much need in the evolutionary multi-objective optimization field.
 3. The sampling method can be extended for multi-objective constrained optimization problems, which are our next step.
 
-![](file:///Users/keli/Dropbox/Projects/Personal/Homepage/jemdoc_mathjax-master/example/SamplingPF/figures/ZDT1.png)
+![](figures/ZDT1.png)
