@@ -4,7 +4,7 @@
 %
 % Author:  Dr. Ke Li @ University of Birmingham
 % Contact: keli.genius@gmail.com (http://www.cs.bham.ac.uk/~likw)
-% Last modified: 01/20/2016
+% Last modified: 01/21/2016
 % ------------------------------------------------------------------------%
 
 close all
@@ -15,8 +15,8 @@ format long
 
 objDim      = 2;    % number of objectives
 no_layers   = 2;    % number of layers (useful for many-objective cases)
-sample_size = 1000; % expected sample size
-problem_id  = 1;    % id = 1: ZDT1 | id = 2: ZDT2 | id = 3: ZDT3 | id = 4: DTLZ1
+sample_size = 500;  % expected sample size
+problem_id  = 3;    % id = 1: ZDT1 | id = 2: ZDT2 | id = 3: ZDT3 | id = 4: DTLZ1
                     % id = 5: DTLZ2-DTLZ4 | id = 6: DTLZ5-DTLZ6 id = 7: DTLZ7
                  
 % Specify the number of divisions on each layer
@@ -33,7 +33,8 @@ else
     parallelcoords(W);
 end
 
-fpt = fopen(['FUN_', int2str(objDim), 'D', '.dat'], 'wt');
+% write to .dat file
+fpt = fopen(['PF_', int2str(objDim), 'D', '.dat'], 'wt');
 for i = 1 : size(W(:, 1))
     for j = 1 : objDim
         fprintf(fpt, '%f\t', W(i, j));

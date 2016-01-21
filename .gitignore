@@ -1,3 +1,5 @@
 # Files ignored by Git
 
 *.m~
+
+Tikz_Plot/
