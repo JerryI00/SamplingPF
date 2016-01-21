@@ -13,10 +13,10 @@ clc
 
 format long
 
-objDim      = 3;    % number of objectives
+objDim      = 2;    % number of objectives
 no_layers   = 2;    % number of layers (useful for many-objective cases)
-sample_size = 5000; % expected sample size
-problem_id  = 7;    % id = 1: ZDT1 | id = 2: ZDT2 | id = 3: ZDT3 | id = 4: DTLZ1
+sample_size = 1000; % expected sample size
+problem_id  = 1;    % id = 1: ZDT1 | id = 2: ZDT2 | id = 3: ZDT3 | id = 4: DTLZ1
                     % id = 5: DTLZ2-DTLZ4 | id = 6: DTLZ5-DTLZ6 id = 7: DTLZ7
                  
 % Specify the number of divisions on each layer
@@ -32,3 +32,12 @@ elseif objDim == 3
 else
     parallelcoords(W);
 end
+
+fpt = fopen(['FUN_', int2str(objDim), 'D', '.dat'], 'wt');
+for i = 1 : size(W(:, 1))
+    for j = 1 : objDim
+        fprintf(fpt, '%f\t', W(i, j));
+    end
+    fprintf(fpt, '\n');
+end
+fclose(fpt);
